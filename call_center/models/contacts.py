@@ -14,7 +14,12 @@ class PhoneList(models.Model):
                               ('no_answer','No Answer'),
                               ('failed','Call Failed'),
                               ('transferred','Transferred'),], string="Status")
-    call_log_ids = fields.One2many('callcenter.call.log','phone_id')
+    call_log_ids = fields.One2many('callcenter.call.log','phone_id', string='Call Logs')
+    call_log_count = fields.Integer(string='Count of Logs', compute='_compute_account_type')
+    
+    @api.depends('call_log_ids')
+    def _compute_account_type(self):
+        return len(self.call_log_ids)
 
     
 class CallSchedule(models.Model):

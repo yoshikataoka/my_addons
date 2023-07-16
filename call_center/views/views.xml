@@ -41,6 +41,9 @@
                             <field name="phone"/>
                             <field name="status" readonly="1"/>
                         </group>
+                        <group>
+                            <field name="call_log_count"/>
+                        </group>
                     </group>
                     <field name="call_log_ids" readonly="1">
                         <tree>
