@@ -1,0 +1,111 @@
+<odoo>
+    <record id="view_schedule_list_form" model="ir.ui.view">
+        <field name="name">view_schedule_list_form</field>
+        <field name="model">callcenter.call.schedule</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="make_call"
+                                    type="object" icon="fa-phone" string="Make Calls"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="flow_id"/>
+                            <field name="time"/>
+                            <!-- <field name="time" widget='float_time'/> -->
+                            <field name="repeat" />
+                        </group>
+                    </group>
+                    <field name="phone_ids">
+                        <tree>
+                            <field name="phone"/>
+                            <field name="status"/>
+                        </tree>
+                    </field>
+                </sheet>
+                
+            </form>
+        </field>
+    </record>
+
+    <record id="view_phone_list_form" model="ir.ui.view">
+        <field name="name">view_phone_list_form</field>
+        <field name="model">callcenter.phone.list</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="phone"/>
+                            <field name="status" readonly="1"/>
+                        </group>
+                    </group>
+                    <field name="recording_ids" readonly="1">
+                        <tree>
+                            <field name="create_date"/>
+                            <field name="link" widget="url"/>
+                            <field name="callStatus"/>
+                            <field name="to"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_call_flow_form" model="ir.ui.view">
+        <field name="name">view_call_flow_form</field>
+        <field name="model">callcenter.call.flow</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="flow_id" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_schedule_list" model="ir.actions.act_window">
+        <field name="name">Call Schedules</field>
+        <field name="res_model">callcenter.call.schedule</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_phone_list" model="ir.actions.act_window">
+        <field name="name">Phone List</field>
+        <field name="res_model">callcenter.phone.list</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_call_flow" model="ir.actions.act_window">
+        <field name="name">IVR Flow</field>
+        <field name="res_model">callcenter.call.flow</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="Auto Call Center" id="call_center" sequence="0" web_icon="call_center,static/description/icon.png"/>
+
+    <menuitem id="call_center_phone_list"
+        name="Phone List"
+        parent="call_center"
+        action="action_phone_list"
+        sequence="1"/>
+    <menuitem id="call_center_schedule_list"
+        name="Schedule List"
+        parent="call_center"
+        action="action_schedule_list"
+        sequence="0"/>
+    <menuitem id="call_center_call_flow"
+        name="IVR Flow"
+        parent="call_center"
+        action="action_call_flow"
+        sequence="3"/>
+</odoo>
