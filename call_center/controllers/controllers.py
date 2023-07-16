@@ -39,6 +39,6 @@ class CallCenter(http.Controller):
         
         phoneRec = request.env['callcenter.phone.list'].sudo().search([('phone', '=', phone)], limit=1)
         print(phoneRec)
-        phoneRec.sudo().update({'recording_ids':[(0, 0, {'link':RecordingUrl, 'callStatus':CallStatus, 'to':From})]})
+        phoneRec.sudo().update({'call_log_ids':[(0, 0, {'link':RecordingUrl, 'callStatus':CallStatus, 'to':From})]})
         
         return "Recording updated!"

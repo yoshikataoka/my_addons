@@ -14,7 +14,8 @@ class PhoneList(models.Model):
                               ('no_answer','No Answer'),
                               ('failed','Call Failed'),
                               ('transferred','Transferred'),], string="Status")
-    recording_ids = fields.One2many('callcenter.call.recording','phone_id')
+    call_log_ids = fields.One2many('callcenter.call.log','phone_id')
+
     
 class CallSchedule(models.Model):
     _name = 'callcenter.call.schedule'
@@ -49,10 +50,10 @@ class CallFlow(models.Model):
     name = fields.Char()
     flow_id = fields.Char('Flow Id')
     
-class CallRecording(models.Model):
-    _name = 'callcenter.call.recording'
+class CallLog(models.Model):
+    _name = 'callcenter.call.log'
     _rec_name = "create_date"
-    _description = "Call recordings"
+    _description = "Call logs"
     
     phone_id = fields.Many2one('callcenter.phone.list')
     link = fields.Char('Recording Link')

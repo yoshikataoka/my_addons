@@ -42,7 +42,7 @@
                             <field name="status" readonly="1"/>
                         </group>
                     </group>
-                    <field name="recording_ids" readonly="1">
+                    <field name="call_log_ids" readonly="1">
                         <tree>
                             <field name="create_date"/>
                             <field name="link" widget="url"/>

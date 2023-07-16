@@ -3,4 +3,4 @@ access_twilio_phone_numbers,access_twilio_phone_numbers	,model_twilio_phone_numb
 access_callcenter_phone_list,access_callcenter_phone_list,model_callcenter_phone_list,base.group_user,1,1,1,1
 access_callcenter_call_schedule,access_callcenter_call_schedule	,model_callcenter_call_schedule,base.group_user,1,1,1,1
 access_callcenter_call_flow,access_callcenter_call_flow	,model_callcenter_call_flow,base.group_user,1,1,1,1
-access_callcenter_call_recording,access_callcenter_call_recording,model_callcenter_call_recording,base.group_user,1,1,1,1
+access_callcenter_call_log,access_callcenter_call_log,model_callcenter_call_log,base.group_user,1,1,1,1
