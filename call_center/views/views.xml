@@ -21,7 +21,7 @@
                     <field name="phone_ids">
                         <tree>
                             <field name="phone"/>
-                            <field name="status"/>
+                            <field name="call_log_count"/>
                         </tree>
                     </field>
                 </sheet>
@@ -34,25 +34,38 @@
         <field name="name">view_phone_list_form</field>
         <field name="model">callcenter.phone.list</field>
         <field name="arch" type="xml">
-            <form>
+            <form edit="0">
                 <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="phone"/>
+                        </h1>
+                    </div>
                     <group>
                         <group>
-                            <field name="phone"/>
+                            <!-- <field name="phone" attrs="{'invisible': [('phone','!=', '')]}"/> -->
                             <field name="status" readonly="1"/>
                         </group>
                         <group>
                             <field name="call_log_count"/>
                         </group>
                     </group>
-                    <field name="call_log_ids" readonly="1">
-                        <tree>
-                            <field name="create_date"/>
-                            <field name="link" widget="url"/>
-                            <field name="callStatus"/>
-                            <field name="to"/>
-                        </tree>
-                    </field>
+                    <!-- <hr/>
+                    <h3>Call Logs</h3> -->
+                    <notebook>
+                        <page name="call_log" string="Call Logs">
+                            <sheet>
+                                <field name="call_log_ids" readonly="1">
+                                    <tree>
+                                        <field name="create_date"/>
+                                        <field name="callStatus"/>
+                                        <field name="to"/>
+                                        <field name="link" widget="url"/>
+                                    </tree>
+                                </field>
+                            </sheet>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

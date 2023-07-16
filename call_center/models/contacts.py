@@ -19,7 +19,11 @@ class PhoneList(models.Model):
     
     @api.depends('call_log_ids')
     def _compute_account_type(self):
-        return len(self.call_log_ids)
+        if self.call_log_ids:
+            self.call_log_count = len(self.call_log_ids)
+        else:
+            self.call_log_count = 0
+        
 
     
 class CallSchedule(models.Model):
