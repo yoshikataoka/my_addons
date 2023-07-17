@@ -61,6 +61,8 @@
                                         <field name="callStatus"/>
                                         <field name="to"/>
                                         <field name="link" widget="url"/>
+                                        <field name="execution_sid"/>
+                                        <field name="call_sid"/>
                                     </tree>
                                 </field>
                             </sheet>

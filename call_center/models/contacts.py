@@ -49,7 +49,9 @@ class CallSchedule(models.Model):
                 twilio_auth_token = self.env.company.twilio_auth_token
                 client = Client(twilio_account_sid, twilio_auth_token)
                 execution = client.studio.v2.flows(flowId).executions.create(to=phone.phone, from_='+12192667888')
-        print(execution.sid)
+                phone.sudo().update({'call_log_ids':[(0, 0, {'execution_sid':execution.sid})]})
+        # print(execution.sid)
+        
                     
 class CallFlow(models.Model):           
     _name = 'callcenter.call.flow'
@@ -69,4 +71,6 @@ class CallLog(models.Model):
     to = fields.Char('Used Phone#')
     callStatus = fields.Char('Call Status')
     execution_sid = fields.Char('Execution SID')
+    call_sid = fields.Char('Call SID')
+    # start_datetime = fields.Datetime('Start DateTime')
     

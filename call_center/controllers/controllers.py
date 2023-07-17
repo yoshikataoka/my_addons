@@ -4,13 +4,30 @@ from odoo.http import request
 
 
 class CallCenter(http.Controller):
+    @http.route('/callcenter/init', methods=['POST'], type='http', auth='public', csrf=False)
+    def init(self, phone, execution_sid, callSid, **kw):
+        print(phone)
+        if '+' in phone:
+            phone = phone.replace(" ", "")
+        else:
+            phone = '+' + phone
+            phone = phone.replace(" ", "")
+        print(phone)
+        phoneLog = request.env['callcenter.call.log'].sudo().search([('execution_sid', '=', execution_sid)], limit=1)
+        print(phoneLog)
+        
+        phoneLog.sudo().write({'call_sid':callSid})
+        
     @http.route('/callcenter/status', methods=['POST'], type='http', auth='public', csrf=False)
     def status(self, phone, status, **kw):
         
-        # print(phone)
-        phone = '+' + phone
-        phone = phone.replace(" ", "")
-        # print(phone)
+        print(phone)
+        if '+' in phone:
+            phone = phone.replace(" ", "")
+        else:
+            phone = '+' + phone
+            phone = phone.replace(" ", "")
+        print(phone)
         phoneRec = request.env['callcenter.phone.list'].sudo().search([('phone', '=', phone)], limit=1)
         
         print(phoneRec)
