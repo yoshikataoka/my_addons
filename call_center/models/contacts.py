@@ -68,4 +68,5 @@ class CallLog(models.Model):
     link = fields.Char('Recording Link')
     to = fields.Char('Used Phone#')
     callStatus = fields.Char('Call Status')
+    execution_sid = fields.Char('Execution SID')
     

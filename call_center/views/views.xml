@@ -88,6 +88,17 @@
         </field>
     </record>
 
+    <record id="phone_list_view_tree" model="ir.ui.view">
+        <field name="name">callcenter.phone.list.view.tree</field>
+        <field name="model">callcenter.phone.list</field>
+        <field name="arch" type="xml">
+            <tree>
+               <field name="phone" string="Phone Number"/>
+               <field name="call_log_count"/>
+            </tree>
+        </field>
+    </record>
+
     <record id="action_schedule_list" model="ir.actions.act_window">
         <field name="name">Call Schedules</field>
         <field name="res_model">callcenter.call.schedule</field>
