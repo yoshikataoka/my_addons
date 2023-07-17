@@ -7,7 +7,7 @@ const { DateTime } = luxon;
 
 const ResConfigEdition = registry.category("view_widgets").get("res_config_edition");
 
-patch(ResConfigEdition.prototype,'_res_config_patch',{
+patch(ResConfigEdition.prototype,'_res_config_uc',{
     setup(){
         this.serverVersion = session.server_version;
         this.expirationDate = '2099-12-31';
