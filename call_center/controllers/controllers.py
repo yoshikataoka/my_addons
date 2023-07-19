@@ -27,15 +27,4 @@ class CallCenter(http.Controller):
         phoneLog.sudo().write({'callStatus':status})
         
         return 'Update Success!'
-        # return None
-
-    # @http.route('/callcenter/recording', methods=['POST'], type='http', auth='public', csrf=False)
-    # def recording(self, CallSid, RecordingUrl, **kw):
         
-    #     print(RecordingUrl)
-        
-    #     phoneLog = request.env['callcenter.call.log'].sudo().search([('call_sid', '=', CallSid)], limit=1)
-    #     print(phoneRec)
-    #     phoneLog.sudo().write({'link':'RecordingUrl'})
-        
-    #     return "Recording updated!"
