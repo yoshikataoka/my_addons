@@ -113,6 +113,12 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+    <record id="action_call_log" model="ir.actions.act_window">
+        <field name="name">Call Logs</field>
+        <field name="res_model">callcenter.call.log</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
     <record id="action_call_flow" model="ir.actions.act_window">
         <field name="name">IVR Flow</field>
         <field name="res_model">callcenter.call.flow</field>
@@ -127,6 +133,11 @@
         parent="call_center"
         action="action_phone_list"
         sequence="1"/>
+    <menuitem id="call_center_phone_log"
+        name="Call Logs"
+        parent="call_center"
+        action="action_call_log"
+        sequence="2"/>
     <menuitem id="call_center_schedule_list"
         name="Schedule List"
         parent="call_center"
