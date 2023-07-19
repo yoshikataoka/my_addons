@@ -24,19 +24,8 @@ class CallCenter(http.Controller):
     def status(self, execution_sid, status, **kw):
         
         phoneLog = request.env['callcenter.call.log'].sudo().search([('execution_sid', '=', execution_sid)], limit=1)
+        phoneLog.sudo().write({'callStatus':status})
         
-        match status:
-            case 'answered':
-                phoneLog.sudo().write({'callStatus':'answered'})
-            case 'busy':
-                phoneLog.sudo().write({'callStatus':'busy'})
-            case 'no_answer':
-                phoneLog.sudo().write({'callStatus':'no_answer'})
-            case 'failed':
-                phoneLog.sudo().write({'callStatus':'failed'})
-            case 'transferred':
-                phoneLog.sudo().write({'callStatus':'transferred'})
-        # phoneRec.sudo().write({'status':'draft'})
         return 'Update Success!'
         # return None
 
