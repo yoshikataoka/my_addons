@@ -29,6 +29,9 @@
         'web._assets_primary_variables': [
             'call_center/static/src/css/colors.scss',
         ],
+        'web.assets_common':[
+            'call_center/static/src/css/ui.scss'
+        ]
     },
     'demo': [
         'demo/demo.xml',
