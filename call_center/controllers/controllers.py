@@ -18,6 +18,8 @@ class CallCenter(http.Controller):
         
         phoneLog.sudo().write({'call_sid':callSid})
         
+        return 'Update Success!'
+    
     @http.route('/callcenter/status', methods=['POST'], type='http', auth='public', csrf=False)
     def status(self, phone, status, **kw):
         
