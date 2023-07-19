@@ -27,7 +27,7 @@
     ],
     "assets": {
         'web._assets_primary_variables': [
-            'call_center/static/src/colors.scss',
+            'call_center/static/src/css/colors.scss',
         ],
     },
     'demo': [
