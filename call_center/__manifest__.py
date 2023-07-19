@@ -25,7 +25,11 @@
         'views/templates.xml',
         'views/res_company.xml',
     ],
-
+    "assets": {
+        'web._assets_primary_variables': [
+            'call_center/static/src/colors.scss',
+        ],
+    },
     'demo': [
         'demo/demo.xml',
     ],
