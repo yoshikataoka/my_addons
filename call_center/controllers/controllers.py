@@ -16,34 +16,26 @@ class CallCenter(http.Controller):
         phoneLog = request.env['callcenter.call.log'].sudo().search([('execution_sid', '=', execution_sid)], limit=1)
         print(phoneLog)
         
-        phoneLog.sudo().write({'call_sid':callSid})
+        phoneLog.sudo().write({'call_sid':callSid, 'to':phone})
         
         return 'Update Success!'
     
     @http.route('/callcenter/status', methods=['POST'], type='http', auth='public', csrf=False)
-    def status(self, phone, status, **kw):
+    def status(self, execution_sid, status, **kw):
         
-        print(phone)
-        if '+' in phone:
-            phone = phone.replace(" ", "")
-        else:
-            phone = '+' + phone
-            phone = phone.replace(" ", "")
-        print(phone)
-        phoneRec = request.env['callcenter.phone.list'].sudo().search([('phone', '=', phone)], limit=1)
+        phoneLog = request.env['callcenter.call.log'].sudo().search([('execution_sid', '=', execution_sid)], limit=1)
         
-        print(phoneRec)
         match status:
             case 'answered':
-                phoneRec.sudo().write({'status':'answered'})
+                phoneLog.sudo().write({'callStatus':'answered'})
             case 'busy':
-                phoneRec.sudo().write({'status':'busy'})
+                phoneLog.sudo().write({'callStatus':'busy'})
             case 'no_answer':
-                phoneRec.sudo().write({'status':'no_answer'})
+                phoneLog.sudo().write({'callStatus':'no_answer'})
             case 'failed':
-                phoneRec.sudo().write({'status':'failed'})
+                phoneLog.sudo().write({'callStatus':'failed'})
             case 'transferred':
-                phoneRec.sudo().write({'status':'transferred'})
+                phoneLog.sudo().write({'callStatus':'transferred'})
         # phoneRec.sudo().write({'status':'draft'})
         return 'Update Success!'
         # return None
