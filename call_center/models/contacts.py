@@ -67,7 +67,7 @@ class CallLog(models.Model):
     _description = "Call logs"
     
     phone_id = fields.Many2one('callcenter.phone.list')
-    link = fields.Char('Recording Link')
+    link = fields.Char('Recording Link', readonly=True)
     to = fields.Char('Used Phone#')
     callStatus = fields.Char('Call Status')
     execution_sid = fields.Char('Execution SID')
@@ -78,10 +78,14 @@ class CallLog(models.Model):
         if self.call_sid:
             twilio_account_sid = self.env.company.twilio_account_sid
             twilio_auth_token = self.env.company.twilio_auth_token
-            client = Client(account_sid, auth_token)
-            recording = client.recordings.list(
+            client = Client(twilio_account_sid, twilio_auth_token)
+            recordings = client.recordings.list(
                         call_sid=self.call_sid,
-                        limit=1
+                        limit=20
                     )
             # self.sudo().update({'link':recording.})
-            print(recording)
+            # print(recording.media_url)
+            
+            for record in recordings:
+                self.sudo().update({'link':record.media_url})
+                # print(record.media_url)

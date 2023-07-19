@@ -38,7 +38,7 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button class="oe_stat_button" name="fetch_recording"
-                                    type="object" icon="fa-music" string="Make Calls"/>
+                                    type="object" icon="fa-music" string="Fetch Recording"/>
                     </div>
                     <group>
                         <group>
@@ -47,7 +47,7 @@
                             <field name="callStatus"/>
                             <field name="execution_sid"/>
                             <field name="call_sid" />
-                            <field name="link" />
+                            <field name="link" widget="url"/>
                         </group>
                     </group>
                 </sheet>
