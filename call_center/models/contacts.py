@@ -73,4 +73,15 @@ class CallLog(models.Model):
     execution_sid = fields.Char('Execution SID')
     call_sid = fields.Char('Call SID')
     # start_datetime = fields.Datetime('Start DateTime')
-    
+
+    def fetch_recording(self):
+        if self.call_sid:
+            twilio_account_sid = self.env.company.twilio_account_sid
+            twilio_auth_token = self.env.company.twilio_auth_token
+            client = Client(account_sid, auth_token)
+            recording = client.recordings.list(
+                        call_sid=self.call_sid,
+                        limit=1
+                    )
+            # self.sudo().update({'link':recording.})
+            print(recording)

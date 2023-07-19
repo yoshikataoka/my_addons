@@ -40,16 +40,13 @@ class CallCenter(http.Controller):
         return 'Update Success!'
         # return None
 
-    @http.route('/callcenter/recording', methods=['POST'], type='http', auth='public', csrf=False)
-    def recording(self, Called, RecordingUrl, CallStatus, From, **kw):
+    # @http.route('/callcenter/recording', methods=['POST'], type='http', auth='public', csrf=False)
+    # def recording(self, CallSid, RecordingUrl, **kw):
         
-        print(Called)
-        Called = '+' + Called
-        phone = Called.replace(" ", "")
-        print(RecordingUrl)
+    #     print(RecordingUrl)
         
-        phoneRec = request.env['callcenter.phone.list'].sudo().search([('phone', '=', phone)], limit=1)
-        print(phoneRec)
-        phoneRec.sudo().update({'call_log_ids':[(0, 0, {'link':RecordingUrl, 'callStatus':CallStatus, 'to':From})]})
+    #     phoneLog = request.env['callcenter.call.log'].sudo().search([('call_sid', '=', CallSid)], limit=1)
+    #     print(phoneRec)
+    #     phoneLog.sudo().write({'link':'RecordingUrl'})
         
-        return "Recording updated!"
+    #     return "Recording updated!"

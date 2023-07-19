@@ -30,6 +30,32 @@
         </field>
     </record>
 
+    <record id="view_call_log_form" model="ir.ui.view">
+        <field name="name">view_call_log_form</field>
+        <field name="model">callcenter.call.log</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="fetch_recording"
+                                    type="object" icon="fa-music" string="Make Calls"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="phone_id"/>
+                            <field name="to"/>
+                            <field name="callStatus"/>
+                            <field name="execution_sid"/>
+                            <field name="call_sid" />
+                            <field name="link" />
+                        </group>
+                    </group>
+                </sheet>
+                
+            </form>
+        </field>
+    </record>
+
     <record id="view_phone_list_form" model="ir.ui.view">
         <field name="name">view_phone_list_form</field>
         <field name="model">callcenter.phone.list</field>
