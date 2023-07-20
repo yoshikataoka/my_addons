@@ -54,7 +54,11 @@ class CallSchedule(models.Model):
                 phone.sudo().update({'call_log_ids':[(0, 0, {'execution_sid':execution.sid})]})
                 
                 time.sleep(3)
-                  
+        
+        
+        # print(execution.sid)
+        
+                    
 class CallFlow(models.Model):           
     _name = 'callcenter.call.flow'
     _rec_name = "name"
