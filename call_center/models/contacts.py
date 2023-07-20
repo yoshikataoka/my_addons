@@ -1,5 +1,6 @@
 from odoo import fields, models, api
 from twilio.rest import Client
+import time
 
 class PhoneList(models.Model):
     _name = 'callcenter.phone.list'
@@ -48,11 +49,12 @@ class CallSchedule(models.Model):
                 twilio_account_sid = self.env.company.twilio_account_sid
                 twilio_auth_token = self.env.company.twilio_auth_token
                 client = Client(twilio_account_sid, twilio_auth_token)
+                
                 execution = client.studio.v2.flows(flowId).executions.create(to=phone.phone, from_='+12192667888')
                 phone.sudo().update({'call_log_ids':[(0, 0, {'execution_sid':execution.sid})]})
-        # print(execution.sid)
-        
-                    
+                
+                time.sleep(3)
+                  
 class CallFlow(models.Model):           
     _name = 'callcenter.call.flow'
     _rec_name = "name"
@@ -83,9 +85,6 @@ class CallLog(models.Model):
                         call_sid=self.call_sid,
                         limit=20
                     )
-            # self.sudo().update({'link':recording.})
-            # print(recording.media_url)
-            
             for record in recordings:
                 self.sudo().update({'link':record.media_url})
                 # print(record.media_url)
